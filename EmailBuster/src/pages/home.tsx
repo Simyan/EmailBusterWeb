@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Button } from "@/components/ui/button"
 import EmailSummary from '@/components/emailSummary'
+import AddBoxButton from '@/components/addBoxButton'
+import AddNoisyBoxButton from '@/components/addNoisyBoxButton'
 
 //Dummy data - start
 interface EmailSummary {
@@ -43,6 +44,7 @@ function Home() {
             <div id='unmarkedEmails'>
                 {data.map(email => 
                     <EmailSummary
+                        key={email.id}
                         id={email.id}
                         numberOfEmails={email.numberOfEmails}
                         emailFrequencyRank={email.emailFrequencyRank}
@@ -50,12 +52,16 @@ function Home() {
                         onClickHandle={onEmailSelectionToggle}
                     />
                 )}
+
+                <AddBoxButton/>
+                {/* <AddNoisyBoxButton/> */}
             </div>
 
             <div id='emailPreview'>
             <h1>EMAIL PREVIEW</h1>
             <pre>{selectedEmails}</pre>
             </div>
+
 
         </>
     )
