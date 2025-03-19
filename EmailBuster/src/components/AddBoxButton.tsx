@@ -12,14 +12,12 @@ import {
   } from "@/components/ui/dialog"
 import BoxFormDialouge from './BoxFormDialouge';
 
+export interface SelectedEmailProp{
+    ids : number[],
+    userId: number,
+}
 
-
-function AddBoxButton(){
-    
-    function handleClick() {
-
-    }
-
+function AddBoxButton(prop : SelectedEmailProp ){
     return (
         <>
             <Dialog>
@@ -30,14 +28,17 @@ function AddBoxButton(){
                     <DialogHeader>
                         <DialogTitle>Move emails to</DialogTitle>
                     </DialogHeader>
-                    <BoxFormDialouge/>
-                
+                    <BoxFormDialouge
+                        {...prop}
+                    />
                 </DialogContent>
-
             </Dialog>
         </>
     )
 }
+
+
+
 
 
 export default AddBoxButton;

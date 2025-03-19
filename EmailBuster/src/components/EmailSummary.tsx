@@ -29,11 +29,9 @@ function EmailSummary(props : EmailSummaryProp){
 
     useEffect(() => {
         if(firstRender.current){
-            console.log("yo");
             firstRender.current = false;
         }
         else{
-            console.log("heey");
             props.onClickHandle(id, isSelected);    
         }
     }, [isSelected]);

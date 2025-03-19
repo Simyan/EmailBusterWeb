@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import EmailSummary from '@/components/emailSummary'
-import AddBoxButton from '@/components/addBoxButton'
-import AddNoisyBoxButton from '@/components/addNoisyBoxButton'
+import EmailSummary from '@/components/EmailSummary'
+import AddBoxButton from '@/components/AddBoxButton'
+import AddNoisyBoxButton from '@/components/AddNoisyBoxButton'
 
 //Dummy data - start
 interface EmailSummary {
@@ -18,7 +18,11 @@ const data: EmailSummary[] = [
     { id : 4, numberOfEmails: 50, emailId: "vt@test.com", emailFrequencyRank: 2 },
     { id : 5, numberOfEmails: 70, emailId: "sid@test.com", emailFrequencyRank: 1 },
 ]
+
+const userId : number = 880012;
 //Dummy data - end
+
+
 
 function Home() {
 
@@ -53,7 +57,10 @@ function Home() {
                     />
                 )}
 
-                <AddBoxButton/>
+                <AddBoxButton
+                    ids={selectedEmails}
+                    userId={userId}
+                />
                 {/* <AddNoisyBoxButton/> */}
             </div>
 
