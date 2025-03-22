@@ -4,6 +4,7 @@ import AddBoxButton from '@/components/AddBoxButton'
 import AddNoisyBoxButton from '@/components/AddNoisyBoxButton'
 import {createFileRoute} from '@tanstack/react-router'
 import './../App.css'
+import EmailContentSummary from '@/components/EmailContentSummary'
 
 
 export const Route = createFileRoute('/home')({
@@ -18,6 +19,17 @@ interface EmailSummary {
     emailFrequencyRank: number
 }
 
+interface EmailContentItem {
+    id: number,
+    sentOn: Date,
+    emailContent: string
+}
+
+interface EmailContents {
+    emailSummaryId: number,
+    emailContentItems: EmailContentItem[]   
+}
+
 const data: EmailSummary[] = [
     { id : 1, numberOfEmails: 10, emailId: "sim@test.com", emailFrequencyRank: 5 },
     { id : 2, numberOfEmails: 30, emailId: "aayu@test.com", emailFrequencyRank: 4 },
@@ -25,6 +37,31 @@ const data: EmailSummary[] = [
     { id : 4, numberOfEmails: 50, emailId: "vt@test.com", emailFrequencyRank: 2 },
     { id : 5, numberOfEmails: 70, emailId: "sid@test.com", emailFrequencyRank: 1 },
 ]
+
+const dataEmailContents : EmailContents[] = [
+    { 
+        emailSummaryId : 1, 
+        emailContentItems: [
+                             {id: 100, sentOn: new Date(2024, 11, 20), emailContent: "Hello XYX, Blah blah blah...More blah blah"},
+                             {id: 140, sentOn: new Date(2024, 12, 14), emailContent: "Hello XYX, WOOO blah blah...More blah blah"},
+                             {id: 143, sentOn: new Date(2024, 12, 18), emailContent: "Oh hello there this is a sample mail"},
+                           ]
+    },
+    { 
+        emailSummaryId : 2, 
+        emailContentItems: [
+                             {id: 103, sentOn: new Date(2024, 10, 18), emailContent: "LALALALALA LALAL ALA ALA ALA AA"},
+                             {id: 120, sentOn: new Date(2024, 11, 17), emailContent: "KAMEHAMAMEHAAAAAA"},
+                             {id: 129, sentOn: new Date(2024, 12, 9), emailContent: "OO OOOO OOO adasddsadsddsa sadasdsasad dassdadsd addsdsdsdsa daadsadsdadsds dadssddsds a ds"},
+                             {id: 150, sentOn: new Date(2025, 1, 3), emailContent: "HAKUNA MATATA TIMON AND PUMBA HAHAHA"},
+                           ]
+    }
+]
+
+
+const selectedEmailContent : EmailContents = dataEmailContents[1];
+
+
 
 const userId : number = 880012;
 //Dummy data - end
@@ -52,22 +89,41 @@ function Home() {
                 <h1>HEADER</h1>
             </div>
 
-            <div className='unmarked-emails' id='unmarkedEmails'>
-                {data.map(email => 
-                    <EmailSummary
-                        key={email.id}
-                        id={email.id}
-                        numberOfEmails={email.numberOfEmails}
-                        emailFrequencyRank={email.emailFrequencyRank}
-                        emailId={email.emailId} 
-                        onClickHandle={onEmailSelectionToggle}
-                    />
-                )}
+            <div className='email-container'>
+                <div className='unmarked-emails' id='unmarkedEmails'>
+                    {data.map(email => 
+                        <EmailSummary
+                            key={email.id}
+                            id={email.id}
+                            numberOfEmails={email.numberOfEmails}
+                            emailFrequencyRank={email.emailFrequencyRank}
+                            emailId={email.emailId} 
+                            onClickHandle={onEmailSelectionToggle}
+                        />
+                    )}
 
-                
-                
-                {/* <AddNoisyBoxButton/> */}
+                    
+                    
+                    {/* <AddNoisyBoxButton/> */}
+                </div>
+                <div className='email-contents'>
+                    <p>{selectedEmailContent.emailSummaryId}</p>
+                    <hr className='w-full' />
+                    {
+                        selectedEmailContent.emailContentItems.map(content =>
+                            <EmailContentSummary
+                                key={content.id}
+                                id={content.id}
+                                sentOn={content.sentOn}
+                                emailContent={content.emailContent}
+                            />
+
+                        )
+                    }
+                </div>
             </div>
+
+            
             <AddBoxButton
                     ids={selectedEmails}
                     userId={userId}

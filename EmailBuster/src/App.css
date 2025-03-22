@@ -49,16 +49,50 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: flex-start;
-  align-content: space-around;
+  align-content:flex-start;
   row-gap: 30px;
   padding: 15px;
+  padding-top: 5%;
+  background-color: red;
+
+  order: 1;
+  flex-grow: 3;
 }
 
 .unmarked-email-button{
-  
+
   padding: 20px;
 }
 
 /* .unmarked-email-item{
   width: 30%;
 } */
+
+
+.email-contents{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: flex-start;
+  align-content: space-around;
+  row-gap: 5px;
+  padding: 8px;
+
+  
+
+  order: 2;
+  flex-grow: 1;
+}
+
+.email-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: green;
+  width: 1400px;
+  height: 800px;
+
+}
