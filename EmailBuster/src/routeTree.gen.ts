@@ -12,6 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as HomeImport } from './routes/home'
+import { Route as BoxesImport } from './routes/boxes'
+import { Route as BoxImport } from './routes/box'
 
 // Create/Update Routes
 
@@ -21,10 +23,36 @@ const HomeRoute = HomeImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const BoxesRoute = BoxesImport.update({
+  id: '/boxes',
+  path: '/boxes',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BoxRoute = BoxImport.update({
+  id: '/box',
+  path: '/box',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/box': {
+      id: '/box'
+      path: '/box'
+      fullPath: '/box'
+      preLoaderRoute: typeof BoxImport
+      parentRoute: typeof rootRoute
+    }
+    '/boxes': {
+      id: '/boxes'
+      path: '/boxes'
+      fullPath: '/boxes'
+      preLoaderRoute: typeof BoxesImport
+      parentRoute: typeof rootRoute
+    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -38,32 +66,42 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
+  '/box': typeof BoxRoute
+  '/boxes': typeof BoxesRoute
   '/home': typeof HomeRoute
 }
 
 export interface FileRoutesByTo {
+  '/box': typeof BoxRoute
+  '/boxes': typeof BoxesRoute
   '/home': typeof HomeRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
+  '/box': typeof BoxRoute
+  '/boxes': typeof BoxesRoute
   '/home': typeof HomeRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/home'
+  fullPaths: '/box' | '/boxes' | '/home'
   fileRoutesByTo: FileRoutesByTo
-  to: '/home'
-  id: '__root__' | '/home'
+  to: '/box' | '/boxes' | '/home'
+  id: '__root__' | '/box' | '/boxes' | '/home'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
+  BoxRoute: typeof BoxRoute
+  BoxesRoute: typeof BoxesRoute
   HomeRoute: typeof HomeRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  BoxRoute: BoxRoute,
+  BoxesRoute: BoxesRoute,
   HomeRoute: HomeRoute,
 }
 
@@ -77,8 +115,16 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/box",
+        "/boxes",
         "/home"
       ]
+    },
+    "/box": {
+      "filePath": "box.tsx"
+    },
+    "/boxes": {
+      "filePath": "boxes.tsx"
     },
     "/home": {
       "filePath": "home.tsx"

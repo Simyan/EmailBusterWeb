@@ -2,6 +2,13 @@ import { useEffect, useState } from 'react'
 import EmailSummary from '@/components/EmailSummary'
 import AddBoxButton from '@/components/AddBoxButton'
 import AddNoisyBoxButton from '@/components/AddNoisyBoxButton'
+import {createFileRoute} from '@tanstack/react-router'
+import './../App.css'
+
+
+export const Route = createFileRoute('/home')({
+    component: Home
+})
 
 //Dummy data - start
 interface EmailSummary {
@@ -45,7 +52,7 @@ function Home() {
                 <h1>HEADER</h1>
             </div>
 
-            <div id='unmarkedEmails'>
+            <div className='unmarked-emails' id='unmarkedEmails'>
                 {data.map(email => 
                     <EmailSummary
                         key={email.id}
@@ -57,13 +64,14 @@ function Home() {
                     />
                 )}
 
-                <AddBoxButton
+                
+                
+                {/* <AddNoisyBoxButton/> */}
+            </div>
+            <AddBoxButton
                     ids={selectedEmails}
                     userId={userId}
                 />
-                {/* <AddNoisyBoxButton/> */}
-            </div>
-
             <div id='emailPreview'>
             <h1>EMAIL PREVIEW</h1>
             <pre>{selectedEmails}</pre>

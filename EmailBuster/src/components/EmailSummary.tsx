@@ -22,7 +22,7 @@ function EmailSummary(props : EmailSummaryProp){
     const { id, numberOfEmails , emailId , emailFrequencyRank } = props;
     const [isSelected, setIsSelected] = useState(false);
     const firstRender = useRef(true);
-    const cardColor = isSelected ? 'bg-cyan-400' : '';
+    const cardColor = isSelected ? 'bg-cyan-400 unmarked-email-item' : 'unmarked-email-item';
     function handleClick(){
         setIsSelected((prev) => !prev);  
     } 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 
+
 import {
     Dialog,
     DialogContent,
@@ -19,7 +20,7 @@ export interface SelectedEmailProp{
 
 function AddBoxButton(prop : SelectedEmailProp ){
     return (
-        <>
+        <div className='unmarked-email-button'>   
             <Dialog>
                 <DialogTrigger asChild>
                     <Button>Add to Box</Button>
@@ -33,7 +34,7 @@ function AddBoxButton(prop : SelectedEmailProp ){
                     />
                 </DialogContent>
             </Dialog>
-        </>
+        </div>
     )
 }
 
