@@ -59,7 +59,7 @@ const dataEmailContents : EmailContents[] = [
 ]
 
 
-const selectedEmailContent : EmailContents = dataEmailContents[1];
+//let selectedEmailContent : EmailContents | undefined;
 
 
 
@@ -71,6 +71,8 @@ const userId : number = 880012;
 function Home() {
 
     const [selectedEmails, setSelectedEmails] = useState<number[]>([]);
+    const [emailPreview, setEmailPreview] = useState<EmailContents>();
+    
 
     function onEmailSelectionToggle(id: number, isSelected : boolean){
         
@@ -79,6 +81,12 @@ function Home() {
                         ? [...prev, id] 
                         : prev.filter(item => item != id)
            });   
+    }
+
+    function onEmailHiglightShowPreviews(id : number){
+        console.log(`Hovered onto ${id}`)
+        let selectedEmailContent = dataEmailContents.find(item => item.emailSummaryId === id)
+        setEmailPreview(selectedEmailContent);
     }
 
     
@@ -99,6 +107,7 @@ function Home() {
                             emailFrequencyRank={email.emailFrequencyRank}
                             emailId={email.emailId} 
                             onClickHandle={onEmailSelectionToggle}
+                            onMouseEnterHandle={onEmailHiglightShowPreviews}
                         />
                     )}
 
@@ -107,17 +116,16 @@ function Home() {
                     {/* <AddNoisyBoxButton/> */}
                 </div>
                 <div className='email-contents'>
-                    <p>{selectedEmailContent.emailSummaryId}</p>
+                    <p>{emailPreview?.emailSummaryId}</p>
                     <hr className='w-full' />
                     {
-                        selectedEmailContent.emailContentItems.map(content =>
+                        emailPreview?.emailContentItems.map(content =>
                             <EmailContentSummary
                                 key={content.id}
                                 id={content.id}
                                 sentOn={content.sentOn}
                                 emailContent={content.emailContent}
                             />
-
                         )
                     }
                 </div>
