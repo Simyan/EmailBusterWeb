@@ -20,7 +20,8 @@ function EmailContentSummary(props : EmailContentSummaryProp){
         <Card className='w-full'>
             <CardHeader>
                 <CardTitle> 
-                    {props.sentOn.toLocaleDateString()} 
+                    {/* {props.sentOn.toLocaleDateString()}  */}
+                    {props.sentOn.toString()}    
                 </CardTitle>
                 <CardDescription>
                     {props.emailContent}

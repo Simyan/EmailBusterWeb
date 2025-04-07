@@ -1,0 +1,29 @@
+{
+    "UnmarkedEmails": [
+        { "id": 1, "numberOfEmails": 10, "emailId": "sim@test.com", "emailFrequencyRank": 5 },
+        { "id": 2, "numberOfEmails": 30, "emailId": "aayu@test.com", "emailFrequencyRank": 4 },
+        { "id": 3, "numberOfEmails": 40, "emailId": "enbd@test.com", "emailFrequencyRank": 3 },
+        { "id": 4, "numberOfEmails": 50, "emailId": "vt@test.com", "emailFrequencyRank": 2 },
+        { "id": 5, "numberOfEmails": 70, "emailId": "sid@test.com", "emailFrequencyRank": 1 }
+    ],
+
+    "UnmarkedEmailPreviews": [
+        { 
+            "emailSummaryId": 1, 
+            "emailContentItems": [
+                { "id": 100, "sentOn": "2024-12-20T00:00:00.000Z", "emailContent": "Hello XYX, Blah blah blah...More blah blah" },
+                { "id": 140, "sentOn": "2024-12-14T00:00:00.000Z", "emailContent": "Hello XYX, WOOO blah blah...More blah blah" },
+                { "id": 143, "sentOn": "2024-12-18T00:00:00.000Z", "emailContent": "Oh hello there this is a sample mail" }
+            ]
+        },
+        { 
+            "emailSummaryId": 2, 
+            "emailContentItems": [
+                { "id": 103, "sentOn": "2024-11-18T00:00:00.000Z", "emailContent": "LALALALALA LALAL ALA ALA ALA AA" },
+                { "id": 120, "sentOn": "2024-12-17T00:00:00.000Z", "emailContent": "KAMEHAMAMEHAAAAAA" },
+                { "id": 129, "sentOn": "2024-12-09T00:00:00.000Z", "emailContent": "OO OOOO OOO adasddsadsddsa sadasdsasad dassdadsd addsdsdsdsa daadsadsdadsds dadssddsds a ds" },
+                { "id": 150, "sentOn": "2025-01-03T00:00:00.000Z", "emailContent": "HAKUNA MATATA TIMON AND PUMBA HAHAHA" }
+            ]
+        }
+    ]
+}

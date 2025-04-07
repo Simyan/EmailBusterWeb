@@ -5,6 +5,7 @@ import AddNoisyBoxButton from '@/components/AddNoisyBoxButton'
 import {createFileRoute} from '@tanstack/react-router'
 import './../App.css'
 import EmailContentSummary from '@/components/EmailContentSummary'
+import {useUnmarkedEmailsQuery, useUnmarkedEmailPreviewsQuery} from '@/services/emailQueries'
 
 
 export const Route = createFileRoute('/home')({
@@ -70,9 +71,14 @@ const userId : number = 880012;
 
 function Home() {
 
+    console.log('Home component rendered');
+    const dataApi = useUnmarkedEmailsQuery();
+    const dataEmailContentsApi = useUnmarkedEmailPreviewsQuery();
+    
     const [selectedEmails, setSelectedEmails] = useState<number[]>([]);
     const [emailPreview, setEmailPreview] = useState<EmailContents>();
     
+    console.log(dataEmailContentsApi.data);
 
     function onEmailSelectionToggle(id: number, isSelected : boolean){
         
@@ -85,7 +91,7 @@ function Home() {
 
     function onEmailHiglightShowPreviews(id : number){
         console.log(`Hovered onto ${id}`)
-        let selectedEmailContent = dataEmailContents.find(item => item.emailSummaryId === id)
+        let selectedEmailContent = dataEmailContentsApi?.data?.find(item => item.emailSummaryId == id)
         setEmailPreview(selectedEmailContent);
     }
 
@@ -99,7 +105,7 @@ function Home() {
 
             <div className='email-container'>
                 <div className='unmarked-emails' id='unmarkedEmails'>
-                    {data.map(email => 
+                    {dataApi.data?.map(email => 
                         <EmailSummary
                             key={email.id}
                             id={email.id}
@@ -119,7 +125,7 @@ function Home() {
                     <p>{emailPreview?.emailSummaryId}</p>
                     <hr className='w-full' />
                     {
-                        emailPreview?.emailContentItems.map(content =>
+                        emailPreview?.emailContentItems.map(content =>  
                             <EmailContentSummary
                                 key={content.id}
                                 id={content.id}

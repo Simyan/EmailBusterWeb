@@ -9,6 +9,7 @@ export const Route = createRootRoute(
 );
 
 function RootComponent(){
+    
     return(
         <>
             <div className='p-2 flex items-start gap-2 text-lg'>
